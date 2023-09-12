@@ -1,7 +1,10 @@
-
 import java.security.SecureRandom;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+
 
 public class Exercicio {
 
@@ -20,8 +23,12 @@ public class Exercicio {
             notas.add(notaRand);
         }
 
+        DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.getDefault());
+        otherSymbols.setDecimalSeparator('.');
+        DecimalFormat df = new DecimalFormat("#.##", otherSymbols);
+
         System.out.println("Qtd Alunos: " + numAlunos);
-        System.out.println("Média das notas: " + Estatistica.media(notas));
-        System.out.println("Desvio Padrão das notas: " + Estatistica.desvioPadrao(notas));
+        System.out.println("Media das notas: " + df.format(Estatistica.media(notas))); 
+        System.out.println("Desvio Padrao das notas: " + df.format(Estatistica.desvioPadrao(notas)));
     }
 }
